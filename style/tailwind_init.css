@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+  @apply flex items-center bg-white py-6 px-7 w-4/5 relative mb-12 mx-auto top-8 h-20 rounded-md shadow-sm;
+}
