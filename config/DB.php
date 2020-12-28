@@ -31,6 +31,12 @@ class DB
         else return false;
     }
 
+    public function decreseAmount($amount, $id)
+    {
+        if ($this->query("UPDATE wallet SET amount=" . $amount . " WHERE user_id=" . $id)) return true;
+        else return false;
+    }
+
     public function getUserinformation($id)
     {
         $user = $this->query("SELECT * FROM users WHERE id=" . $id);
@@ -41,5 +47,19 @@ class DB
     {
         $purchases = $this->query("SELECT * FROM users WHERE id=$id");
         return $purchases;
+    }
+
+    public function getProduct($id)
+    {
+        $product = $this->query("SELECT * FROM product WHERE id=$id");
+        return $product->fetch(2);
+    }
+
+    public function insertReceipt($userid, $productid, $amount)
+    {
+        $receipt =
+            $this->query("INSERT INTO `receipts`( `user_id`, `product_id`, `amount`) VALUES ($userid,$productid,$amount)");
+
+        return $receipt->execute() ? true : false;
     }
 }
